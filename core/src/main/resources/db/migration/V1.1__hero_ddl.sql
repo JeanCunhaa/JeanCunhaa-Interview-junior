@@ -1,4 +1,4 @@
-CREATE TABLE hero
+CREATE TABLE IF NOT EXISTS hero
 (
     id             UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4(),
     name           VARCHAR(255)     NOT NULL UNIQUE,

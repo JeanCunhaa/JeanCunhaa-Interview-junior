@@ -1,4 +1,4 @@
-CREATE TABLE power_stats
+CREATE TABLE IF NOT EXISTS power_stats
 (
     id           UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4(),
     strength     SMALLINT         NOT NULL,
