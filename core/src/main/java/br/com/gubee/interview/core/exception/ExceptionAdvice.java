@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.StringUtils;
@@ -92,4 +93,11 @@ public class ExceptionAdvice {
         log.error(e.getMessage(), e);
         return status(BAD_GATEWAY).body("message.integration.connection.refused");
     }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException e) {
+        log.error(e.getMessage(), e);
+        return status(NOT_FOUND).body("Hero not found");
+    }
+
 }
